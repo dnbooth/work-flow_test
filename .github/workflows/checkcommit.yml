@@ -24,3 +24,5 @@ jobs:
           error: 'Your first line has to begin with a jira ticket "DEV-xxx".'
           checkAllCommitMessages: 'true'
           accessToken: ${{ secrets.GITHUB_TOKEN }}
+          excludeDescription: 'true'
+          excludeTitle: 'true'
