@@ -16,7 +16,7 @@ jobs:
     name: Check Commit Message
     runs-on: ubuntu-latest
     steps:
-      - name: Check Commit Type
+      - name: Check Commit Message
         uses: gsactions/commit-message-checker@v1
         with:
           pattern: '^(DEV-\d+|Merge) .+$'
@@ -24,4 +24,13 @@ jobs:
           error: 'Your commit message and PR/branch must begin with a jira ticket "DEV-xxx".'
           checkAllCommitMessages: 'true'
           accessToken: ${{ secrets.GITHUB_TOKEN }}
+          excludeDescription: 'true'
+          excludeTitle: 'true'
+      - name: Check Commit Title 
+        uses: gsactions/commit-message-checker@v1
+        with:
+          pattern: '^(DEV-\d+|Dev \d+).*$'
+          flags: 'gm'
+          error: 'Your PR source branch must begin with a jira ticket - "DEV-xxx" will be converted to github title "Dev xxx". Either format works'
+          excludeTitle: 'false'
           excludeDescription: 'true'
